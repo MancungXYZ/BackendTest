@@ -5,6 +5,55 @@ const Peminjaman = require('../model/Peminjaman')
 const moment = require('moment')
 const router = require('express').Router()
 
+/**
+ * @swagger
+ * tags:
+ *   name: Pengembalian
+ *   description: API for managing book returns
+ */
+
+/**
+ * @swagger
+ * /api/pengembalian/addpengembalian:
+ *   post:
+ *     summary: Menambahkan data pengembalian buku
+ *     tags: [Pengembalian]
+ *     description: Menambahkan data pengembalian buku berdasarkan kode buku dan kode anggota.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               code:
+ *                type: string
+ *               kodeBuku:
+ *                 type: string
+ *             required:
+ *               - code
+ *               - kodeBuku
+ *     responses:
+ *       201:
+ *         description: Data pengembalian berhasil disimpan
+ *         content:
+ *           application/json:
+ *             example:
+ *               message: Data Pengembalian buku berhasil disimpan
+ *       400:
+ *         description: Nomor anggota tidak ditemukan/terdaftar
+ *         content:
+ *           application/json:
+ *             example:
+ *               error: Nomor anggota tidak ditemukan/terdaftar
+ *       500:
+ *         description: Terjadi kesalahan server
+ *         content:
+ *           application/json:
+ *             example:
+ *               error: Terjadi kesalahan server
+ */
+
 //tanggal hari ini
 moment.locale('id')
 const hariIni = moment(new Date()).format("DD MMMM YYYY")

@@ -1,6 +1,58 @@
 const Book = require('../model/Book')
 const router = require('express').Router()
 
+/**
+ * @swagger
+ * /api/book/addbook:
+ *   post:
+ *     summary: Menambahkan buku baru
+ *     tags: [Books]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               code:
+ *                type: string
+ *               title:
+ *                 type: string
+ *               author:
+ *                 type: string
+ *               stock:
+ *                 type: string
+ *             required:
+ *               - code
+ *               - title
+ *               - author
+ *               - stock
+ *     responses:
+ *       '201':
+ *         description: Buku berhasil ditambahkan
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 code:
+ *                   type: string
+ *                 title:
+ *                   type: string
+ *                 author:
+ *                   type: string
+ *                 stock:
+ *                   type: string
+ *       '500':
+ *         description: Terjadi kesalahan server
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ */
 router.post("/addbook", async (req, res) => {
     const newBook = new Book({
         code: req.body.code,
@@ -18,7 +70,24 @@ router.post("/addbook", async (req, res) => {
     }
 })
 
-router.get("/", async (req, res) => {
+/**
+ * @swagger
+ * path:
+ * /api/book/getbook:
+ *   get:
+ *     summary: Returns the list of all the books
+ *     tags: [Books]
+ *     responses:
+ *       200:
+ *         description: The list of the books
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               items:
+ *                 $ref: '#/components/schemas/Books'
+ */
+router.get("/getbook", async (req, res) => {
     try {
         const cariBuku = await Book.find({
             stock: {

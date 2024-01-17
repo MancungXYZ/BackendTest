@@ -4,6 +4,14 @@ const User = require('../model/User')
 const moment = require('moment')
 const router = require('express').Router()
 
+/**
+ * @swagger
+ * tags:
+ *   name: Peminjaman
+ *   description: API untuk manajemen peminjaman buku
+ */
+
+
 //tanggal hari ini
 moment.locale('id')
 const hariIni = new Date()
@@ -14,6 +22,37 @@ const random = Math.floor(Math.random() * 101);
 const transaksi = "PIN"+random;
 
 //tambah pinjaman buku baru
+/**
+ * @swagger
+ * /api/pinjam/addpinjaman:
+ *   post:
+ *     summary: Menambahkan data peminjaman buku
+ *     tags: [Peminjaman]
+ *     description: Menambahkan data peminjaman buku berdasarkan kode buku dan kode anggota.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               code:
+ *                type: string
+ *               kodeBuku:
+ *                 type: string
+ *             required:
+ *               - code
+ *               - kodeBuku
+ *     responses:
+ *       201:
+ *         description: Data peminjaman berhasil disimpan
+ *       400:
+ *         description: Kesalahan input data
+ *       403:
+ *         description: Anggota tidak boleh meminjam lebih dari 2 buku / Buku telah habis terpinjam / Pengguna dalam masa hukuman
+ *       500:
+ *         description: Terjadi kesalahan server
+ */
 router.post("/addpinjaman", async (req, res) => {
     kodeBuku = req.body.kodeBuku
     code = req.body.code
