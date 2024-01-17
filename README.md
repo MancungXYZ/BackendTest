@@ -3,15 +3,9 @@
 [![Node.js](https://img.shields.io/badge/Node.js-v14.17.0-green)](https://nodejs.org/)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-## Deskripsi_Program
+## Gambar Program
 
-**<Nama_Program>** adalah sebuah program Node.js yang <deskripsi singkat program Anda>.
-
-## Fitur
-
-- Fitur 1
-- Fitur 2
-- Fitur 3
+![swagger](https://github.com/MancungXYZ/BackendTest/assets/60146927/3e586f98-dd39-4c6d-aaaa-4e46b2c14c3d)
 
 ## Instalasi
 
@@ -19,7 +13,7 @@
 2. Clone repositori ini ke dalam direktori lokal Anda:
 
     ```bash
-    git clone https://github.com/<username>/<Nama_Program>.git
+    git clone https://github.com/MancungXYZ/BackendTest.git
     ```
 
 3. Masuk ke direktori proyek:
