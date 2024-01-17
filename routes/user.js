@@ -79,13 +79,13 @@ router.post("/adduser", async (req, res) => {
  *         description: Data anggota berhasil diambil
  *         content:
  *           application/json:
- *             example:
- *               - _id: "61234567890abcdef1234567"
- *                 code: "USR123"
- *                 name: "John Doe"
- *               - _id: "71234567890abcdef1234568"
- *                 code: "USR456"
- *                 name: "Jane Doe"
+ *             schema:
+ *               type: object
+ *               properties:
+ *               code:
+ *                type: string
+ *               name:
+ *                 type: string
  *       500:
  *         description: Terjadi kesalahan server
  *         content:

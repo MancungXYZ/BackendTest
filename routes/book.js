@@ -42,7 +42,7 @@ const router = require('express').Router()
  *                 author:
  *                   type: string
  *                 stock:
- *                   type: string
+ *                   type: number
  *       '500':
  *         description: Terjadi kesalahan server
  *         content:
@@ -63,7 +63,7 @@ router.post("/addbook", async (req, res) => {
 
     try {
         const savedBook = await newBook.save();
-        res.status(201).json(console.log(savedBook))
+        res.status(201).json(savedBook)
     } catch (error) {
         res.status(500).json(error)
         console.log(error)
@@ -78,7 +78,7 @@ router.post("/addbook", async (req, res) => {
  *     summary: Returns the list of all the books
  *     tags: [Books]
  *     responses:
- *       200:
+ *       201:
  *         description: The list of the books
  *         content:
  *           application/json:
@@ -92,7 +92,7 @@ router.post("/addbook", async (req, res) => {
  *               author:
  *                 type: string
  *               stock:
- *                 type: string
+ *                 type: number
  */
 router.get("/getbook", async (req, res) => {
     try {

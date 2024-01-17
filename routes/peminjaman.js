@@ -45,7 +45,16 @@ const transaksi = "PIN"+random;
  *               - kodeBuku
  *     responses:
  *       201:
- *         description: Data peminjaman berhasil disimpan
+ *         description: Data pinjaman buku disimpan
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *               code:
+ *                type: string
+ *               kodeBuku:
+ *                 type: string
  *       400:
  *         description: Kesalahan input data
  *       403:
