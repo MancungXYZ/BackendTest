@@ -6,6 +6,7 @@ const bodyParser = require('body-parser')
 const userRoute = require('./routes/user')
 const bookRoute = require('./routes/book')
 const pinjamRoute = require('./routes/peminjaman')
+const pengembalianRoute = require('./routes/pengembalian')
 const pathToSwaggerUi = require('swagger-ui-dist').absolutePath()
 const app = express()
 const port = 3000
@@ -27,6 +28,7 @@ app.get('/', (req, res) => {
 app.use("/api/user", userRoute) //handle pengguna
 app.use("/api/book", bookRoute) //handle buku
 app.use("/api/pinjam", pinjamRoute) //handle pinjaman buku
+app.use("/api/pengembalian", pengembalianRoute ) //handle pengembalian buku
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)

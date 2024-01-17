@@ -1,6 +1,7 @@
 const User = require('../model/User')
 const router = require('express').Router()
 
+//tambah anggota baru
 router.post("/adduser", async (req, res) => {
     const newUser = new User({
         code: req.body.code,
@@ -16,6 +17,7 @@ router.post("/adduser", async (req, res) => {
     }
 })
 
+//ambil semua data anggota
 router.get("/", async (req, res) => {
     try {
         const cariPengguna = await User.find()

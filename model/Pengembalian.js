@@ -4,8 +4,8 @@ const pengembalianSchema = new mongoose.Schema({
     transaksi: { type: String, required:true, unique:true},
     code: { type: String, required:true},
     kodeBuku: {type: String, required:true},
-    tglPinjam: {type: String},
+    tglPengembalian: {type: String},
 }, {timestamps: true},
 );
 
-module.exports = mongoose.model("Pengambalian", pengembalianSchema)
+module.exports = mongoose.model("Pengembalian", pengembalianSchema)

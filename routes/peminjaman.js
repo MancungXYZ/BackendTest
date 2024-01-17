@@ -34,33 +34,40 @@ router.post("/addpinjaman", async (req, res) => {
             "code": code
         })
 
+        //hitung buku yang telah di pinjam
+        // console.log(cariUser.borrowedBook.length)
+        if (cariUser.borrowedBook.length >= 2) {
+            return res.send("Anggota tidak boleh meminjam lebih dari 2 buku")
+        } 
+
         //jika buku sudah dipinjam stock = 0 mengirimkan respon
         if (cariBuku.stock === 0) {
             return res.send("Mohon maaf buku telah di habis terpinjam")
         } else {
             //jika pelanggan melanggar dan masa hukuman belum selesai kirimkan respon
-            if (cariUser.finalty === true) {
+            if (cariUser.finalty === "true") {
                 return res.send("Mohon maaf pengguna pernah melanggar peraturan, tidak dapat melakukan peminjaman selama 3 hari")
+            } else {
+                //masukkan buku apa saja yang dipinjam pengguna
+                const updatePinjaman = await User.updateOne({code: code},
+                    {
+                        $push: {borrowedBook: kodeBuku}
+                    }
+                    
+                )
+                //update/perbarui stock buku setelah peminjaman
+                const updateStock = await Book.updateOne({ code: kodeBuku },
+                    {
+                      $set: {
+                        stock: cariBuku.stock - 1
+                      }
+                    })
+                //simpan data peminjaman kedalam database
+                const savedPinjaman = await newPinjaman.save();
+    
+                //kirimkan respon penyimpanan dari database
+                res.status(201).json("Data Pinjaman berhasil disimpan")
             }
-            //masukkan buku apa saja yang dipinjam pengguna
-            const updatePinjaman = await User.updateOne({code: code},
-                {
-                    $push: {borrowedBook: kodeBuku}
-                }
-                
-            )
-            //update/perbarui stock buku setelah peminjaman
-            const updateStock = await Book.updateOne({ code: kodeBuku },
-                {
-                  $set: {
-                    stock: cariBuku.stock - 1
-                  }
-                })
-            //simpan data peminjaman kedalam database
-            const savedPinjaman = await newPinjaman.save();
-
-            //kirimkan respon penyimpanan dari database
-            res.status(201).json("Data Pinjaman berhasil disimpan")
         }
         
         // console.log(cariUser)

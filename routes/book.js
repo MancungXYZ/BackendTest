@@ -20,7 +20,11 @@ router.post("/addbook", async (req, res) => {
 
 router.get("/", async (req, res) => {
     try {
-        const cariBuku = await Book.find()
+        const cariBuku = await Book.find({
+            stock: {
+                $gt: 0
+            }
+        })
         res.status(200).json(cariBuku)
     } catch (error) {
         res.status(500).json(error)
