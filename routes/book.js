@@ -84,8 +84,15 @@ router.post("/addbook", async (req, res) => {
  *           application/json:
  *             schema:
  *               type: object
- *               items:
- *                 $ref: '#/components/schemas/Books'
+ *               properties:
+ *               code:
+ *                type: string
+ *               title:
+ *                 type: string
+ *               author:
+ *                 type: string
+ *               stock:
+ *                 type: string
  */
 router.get("/getbook", async (req, res) => {
     try {
