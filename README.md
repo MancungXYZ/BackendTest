@@ -30,7 +30,7 @@
 
 ## Penggunaan
 
-Deskripsikan cara menggunakan program Anda. Berikan contoh perintah atau kode untuk memudahkan penggunaan.
+Untuk menjalankan program ini ketikan perintah dibawah pada terminal anda
 
 ```bash
 npm start
